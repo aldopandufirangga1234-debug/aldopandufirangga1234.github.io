@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Modern</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-ring"></div>
+            <h2>Loading...</h2>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heart"></i>
+                <span>Wedding Invitation</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#couple" class="nav-link">Couple</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#event" class="nav-link">Event</a>
+                <a href="#rsvp" class="nav-link">RSVP</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-hearts">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-title text-reveal"> 
+                    Selamat Menempuh Hidup Baru
+                </div>
+                <div class="couple-names">
+                    <h2 class="groom-name">Fandi & Ajeng</h2>
+                </div>
+                <p class="hero-date">17 oktober 2025</p>
+                <div class="hero-buttons">
+                    <button class="btn-secondary" onclick="scrollToSection('couple')">
+                        <i class="fas fa-arrow-down"></i> Lihat Detail
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Couple Section -->
+    <section id="couple" class="couple-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title text-reveal">The Happy Couple</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="couple-content">
+                <div class="couple-card groom slide-in-left stagger-1">
+                    <div class="couple-image card-hover">
+                        <img src="laki.jpg" >
+                        <div class="image-overlay">
+                            <h3>Fandi Cahyo</h3>
+                            <p>Putra dari Bapak Takim & Ibu Ana Kunanti</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="couple-symbol bounce-in stagger-2">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="couple-card bride slide-in-right stagger-3">
+                    <div class="couple-image card-hover">
+                        <img src="cewe.jpg">
+                        <div class="image-overlay">
+                            <h3>Riony Ajeng anesta putri</h3>
+                            <p>Putri dari Bapak Alm Wiwit Yulianto & Ibu Lilis suparmiati</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title text-reveal">Our Gallery</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item scale-in stagger-1">
+                    <img src="Gambar WhatsApp 2025-09-28 pukul 21.09.41_40a124bf.jpg" alt="Gallery 1">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item scale-in stagger-2">
+                    <img src="Gambar WhatsApp 2025-09-28 pukul 21.09.41_c98533a2.jpg" alt="Gallery 2">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item scale-in stagger-3">
+                    <img src="Gambar WhatsApp 2025-09-28 pukul 21.09.41_de3d8db0.jpg" alt="Gallery 3">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="event" class="event-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title text-reveal">Event Details</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="event-timeline">
+                <div class="timeline-item slide-in-left stagger-1">
+                    <div class="timeline-icon rotate-in">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <div class="timeline-content fade-in">
+                        <h3>Akad Nikah</h3>
+                        <p class="timeline-date">jumat, 17 oktober 2025</p>
+                        <p class="timeline-time">09:00 WIB</p>
+                        <p class="timeline-location">Dusun Kampung Teh RT 14 RW 02</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in-right stagger-2">
+                    <div class="timeline-icon rotate-in">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="timeline-content fade-in">
+                        <h3>resepsi</h3>
+                        <p class="timeline-date">Beltentukanum di </p>
+                        <p class="timeline-time">19:00 WIB</p>
+                        <p class="timeline-location">Dusun Kampung Teh RT 14 RW 02</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ucapan1">
+        <p>
+            Merupakan suatu kebahagiaan dan kehormatan bagi kami
+            apabila Bapak/Ibu/Saudara/i berkenan hadir
+            untuk memberikan doa restu kepada kedua mempelai.
+            
+            Atas kehadiran dan doa restu, kami ucapkan terima kasih.
+            
+            Wassalamu’alaikum Warahmatullahi Wabarakatuh
+            
+            Hormat kami yang berbahagia,
+            Keluarga Besar Fandi Cahyono & Riony Ajeng Anesta Putri
+        </p>
+    </section>
+
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2 class="section-title text-reveal">Konfirmasi Kehadiran</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="rsvp-form scale-in">
+                <form id="rsvpForm">
+                    <div class="form-group fade-in stagger-1">
+                        <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+                    </div>
+                    <div class="form-group fade-in stagger-2">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group fade-in stagger-3">
+                        <input type="tel" id="phone" name="phone" placeholder="Nomor Telepon" required>
+                    </div>
+                    <div class="form-group fade-in stagger-4">
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Konfirmasi Kehadiran</option>
+                            <option value="yes">Ya, Saya Akan Hadir</option>
+                            <option value="no">Maaf, Saya Tidak Bisa Hadir</option>
+                        </select>
+                    </div>
+                    <div class="form-group fade-in stagger-5">
+                        <textarea id="message" name="message" placeholder="Pesan untuk mempelai" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit bounce-in">
+                        <i class="fas fa-paper-plane"></i> Kirim Konfirmasi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <h3>Terima Kasih</h3>
+                    <p>Atas doa dan restu yang telah diberikan</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Wedding Invitation. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-info">
+            <i class="fas fa-music"></i>
+            <span>Wedding Music</span>
+        </div>
+        <div class="music-controls">
+            <button id="playPauseBtn" onclick="toggleMusic()">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button id="stopBtn" onclick="stopMusic()">
+                <i class="fas fa-stop"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="backgroundMusic" loop>
+        <source src="wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

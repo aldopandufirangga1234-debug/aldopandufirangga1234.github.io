@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Buka Undangan Pernikahan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            font-size: 2rem;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            font-size: 1.5rem;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            font-size: 1.8rem;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 30%;
+            right: 20%;
+            font-size: 1.2rem;
+            animation-delay: 6s;
+        }
+
+        .floating-element:nth-child(5) {
+            top: 50%;
+            left: 5%;
+            font-size: 1.6rem;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .invitation-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            transform: scale(0.8);
+            opacity: 0;
+            animation: slideInScale 1s ease forwards;
+        }
+
+        @keyframes slideInScale {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .invitation-header {
+            margin-bottom: 30px;
+        }
+
+        .invitation-icon {
+            font-size: 4rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .invitation-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .invitation-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Couple Names */
+        .couple-names {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #e91e63, #667eea);
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .couple-names::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .couple-names h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .couple-names p {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Date */
+        .wedding-date {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(233, 30, 99, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #e91e63;
+        }
+
+        /* Buttons */
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e91e63, #667eea);
+            color: white;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e91e63;
+            border: 2px solid #e91e63;
+        }
+
+        .btn-secondary:hover {
+            background: #e91e63;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(233, 30, 99, 0.1);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .music-player.show {
+            display: block;
+            animation: slideInUp 0.5s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #e91e63;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            background: #c2185b;
+            transform: scale(1.1);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(233, 30, 99, 0.3);
+            border-top: 4px solid #e91e63;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Touch Feedback */
+        .touch-feedback {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(233, 30, 99, 0.3);
+            pointer-events: none;
+            animation: touchRipple 0.6s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes touchRipple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Android Optimizations */
+        @media (max-width: 480px) {
+            .invitation-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .invitation-title {
+                font-size: 2rem;
+            }
+            
+            .couple-names h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Landscape Orientation */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .invitation-container {
+                max-width: 90%;
+                padding: 20px;
+            }
+            
+            .invitation-title {
+                font-size: 2rem;
+            }
+            
+            .couple-names {
+                margin: 20px 0;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-element">💕</div>
+        <div class="floating-element">💒</div>
+        <div class="floating-element">💐</div>
+        <div class="floating-element">🎊</div>
+        <div class="floating-element">💖</div>
+    </div>
+
+    <!-- Main Invitation Container -->
+    <div class="invitation-container">
+        <div class="invitation-header">
+            <div class="invitation-icon">
+                <i class="fas fa-envelope-open"></i>
+            </div>
+            <h1 class="invitation-title">Undangan Pernikahan</h1>
+            <p class="invitation-subtitle">Dengan memohon rahmat dan ridho Allah SWT</p>
+        </div>
+
+        <div class="couple-names">
+            <h2>Ahmad & Siti</h2>
+            <p>Putra & Putri dari Bapak & Ibu</p>
+        </div>
+
+        <div class="wedding-date">
+            <i class="fas fa-calendar-alt"></i>
+            28 September 2025
+        </div>
+
+        <div class="button-container">
+            <button class="btn btn-primary" onclick="openInvitation()">
+                <i class="fas fa-heart"></i>
+                Buka Undangan
+            </button>
+        </div>
+
+        <!-- Music Player -->
+        <div class="music-player" id="musicPlayer">
+            <div class="music-info">
+                <i class="fas fa-music"></i>
+                <span>Wedding Music</span>
+            </div>
+            <div class="music-controls">
+                <button class="music-btn" onclick="playLocalMusic()" title="Putar Musik">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="music-btn" onclick="pauseLocalMusic()" title="Pause Musik">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="music-btn" onclick="stopLocalMusic()" title="Stop Musik">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Memuat undangan...</p>
+        </div>
+    </div>
+
+    <script>
+        // Touch feedback for Android
+        function createTouchFeedback(x, y) {
+            const feedback = document.createElement('div');
+            feedback.className = 'touch-feedback';
+            feedback.style.left = x + 'px';
+            feedback.style.top = y + 'px';
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                document.body.removeChild(feedback);
+            }, 600);
+        }
+
+        // Add touch feedback to all buttons
+        document.querySelectorAll('.btn, .music-btn').forEach(button => {
+            button.addEventListener('touchstart', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const y = e.touches[0].clientY - rect.top;
+                createTouchFeedback(x, y);
+            });
+        });
+
+        // Ripple effect for buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            ripple.style.width = size + 'px';
+            ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', createRipple);
+        });
+
+        // Open invitation function
+        function openInvitation() {
+            const loading = document.getElementById('loading');
+            loading.classList.add('show');
+            
+            // Simulate loading
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+
+        // Auto-play music function
+        function autoPlayMusic() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            const localMusic = document.getElementById('localMusic');
+            
+            musicPlayer.classList.add('show');
+            
+            // Try to play local music immediately
+            localMusic.play().then(() => {
+                console.log('Musik otomatis berputar');
+            }).catch(error => {
+                console.log('Auto-play gagal, menunggu interaksi user:', error);
+                // Show music player but don't play yet
+                musicPlayer.classList.add('show');
+                
+                // Try to play on first user interaction
+                document.addEventListener('click', playMusicOnInteraction, { once: true });
+                document.addEventListener('touchstart', playMusicOnInteraction, { once: true });
+            });
+        }
+
+        function playMusicOnInteraction() {
+            const localMusic = document.getElementById('localMusic');
+            localMusic.play().then(() => {
+                console.log('Musik diputar setelah interaksi user');
+            }).catch(error => {
+                console.log('Gagal memutar musik:', error);
+            });
+        }
+
+        // Play local music
+        function playLocalMusic() {
+            const localMusic = document.getElementById('localMusic');
+            localMusic.play().then(() => {
+                console.log('Local music playing');
+                showNotification('Musik lokal diputar', 'success');
+            }).catch(error => {
+                console.log('Local music failed:', error);
+                showNotification('Tidak dapat memutar musik lokal', 'error');
+                // Fallback to YouTube
+                playYouTubeMusic();
+            });
+        }
+
+        // Pause local music
+        function pauseLocalMusic() {
+            const localMusic = document.getElementById('localMusic');
+            localMusic.pause();
+            showNotification('Musik dihentikan', 'info');
+        }
+
+        // Stop local music
+        function stopLocalMusic() {
+            const localMusic = document.getElementById('localMusic');
+            localMusic.pause();
+            localMusic.currentTime = 0;
+            showNotification('Musik dihentikan', 'info');
+        }
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            const colors = {
+                success: '#4CAF50',
+                error: '#f44336',
+                info: '#2196F3',
+                warning: '#ff9800'
+            };
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                z-index: 10001;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                word-wrap: break-word;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Auto remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Android back button handling
+        document.addEventListener('backbutton', function(e) {
+            e.preventDefault();
+            // You can add custom back button behavior here
+        }, false);
+
+        // Prevent zoom on double tap for Android
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Add haptic feedback for supported devices
+        function hapticFeedback() {
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // Add haptic feedback to buttons
+        document.querySelectorAll('.btn, .music-btn').forEach(button => {
+            button.addEventListener('click', hapticFeedback);
+        });
+
+        // Optimize for Android performance
+        if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
+            // Reduce animations for better performance on Android
+            document.body.style.animationDuration = '0.5s';
+        }
+
+        // Add orientation change handling
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+
+        // Prevent context menu on long press for Android
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Add keyboard support for accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focusedElement = document.activeElement;
+                if (focusedElement && focusedElement.classList.contains('btn')) {
+                    focusedElement.click();
+                }
+            }
+        });
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Buka Undangan loaded successfully!');
+            
+            // Start auto-play music
+            setTimeout(() => {
+                autoPlayMusic();
+            }, 1500); // Delay 1.5 seconds after page load
+            
+            // Add entrance animation
+            setTimeout(() => {
+                document.querySelector('.invitation-container').style.animation = 'slideInScale 1s ease forwards';
+            }, 100);
+        });
+    </script>
+
+    <!-- Audio Element for Local Music -->
+    <audio id="localMusic" loop>
+        <source src="wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+</body>
+</html>

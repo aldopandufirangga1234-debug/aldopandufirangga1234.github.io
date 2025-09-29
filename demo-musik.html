@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Musik Lokal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .music-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #e91e63;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+        }
+
+        .status.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+        }
+
+        .status.info {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196F3;
+        }
+
+        .file-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .file-info h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .file-info p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e91e63, #667eea);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Demo Musik Lokal</h1>
+        
+        <div class="music-info">
+            <h2>Wave to Earth - Love</h2>
+            <p>Musik yang digunakan dalam undangan pernikahan</p>
+        </div>
+
+        <div class="file-info">
+            <h3>📁 Informasi File</h3>
+            <p><strong>Nama:</strong> wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3</p>
+            <p><strong>Format:</strong> MP3</p>
+            <p><strong>Status:</strong> <span id="fileStatus">Checking...</span></p>
+        </div>
+
+        <div class="music-controls">
+            <button class="btn btn-primary" onclick="playMusic()">
+                <i class="fas fa-play"></i> Play
+            </button>
+            <button class="btn btn-secondary" onclick="pauseMusic()">
+                <i class="fas fa-pause"></i> Pause
+            </button>
+            <button class="btn btn-secondary" onclick="stopMusic()">
+                <i class="fas fa-stop"></i> Stop
+            </button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="time-display">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+
+        <div class="status info" id="status">
+            Klik tombol Play untuk memutar musik
+        </div>
+
+        <div class="music-info">
+            <h3>🎯 Fitur yang Tersedia</h3>
+            <p>✅ Musik lokal MP3</p>
+            <p>✅ Loop otomatis</p>
+            <p>✅ Progress bar</p>
+            <p>✅ Time display</p>
+            <p>✅ Mobile responsive</p>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="demoMusic" loop>
+        <source src="wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        const demoMusic = document.getElementById('demoMusic');
+        const fileStatus = document.getElementById('fileStatus');
+        const status = document.getElementById('status');
+        const progressFill = document.getElementById('progressFill');
+        const currentTime = document.getElementById('currentTime');
+        const duration = document.getElementById('duration');
+
+        let isPlaying = false;
+
+        // Check file availability
+        function checkFileStatus() {
+            const audio = new Audio();
+            audio.src = "wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3";
+            
+            audio.addEventListener('canplaythrough', () => {
+                fileStatus.textContent = '✅ File tersedia';
+                fileStatus.style.color = '#4CAF50';
+            });
+            
+            audio.addEventListener('error', () => {
+                fileStatus.textContent = '❌ File tidak ditemukan';
+                fileStatus.style.color = '#f44336';
+            });
+        }
+
+        // Play music
+        function playMusic() {
+            demoMusic.play().then(() => {
+                isPlaying = true;
+                status.textContent = '🎵 Musik sedang diputar';
+                status.className = 'status success';
+                updateStatus('Musik lokal diputar dengan sukses!', 'success');
+            }).catch(error => {
+                console.log('Play failed:', error);
+                updateStatus('Tidak dapat memutar musik lokal: ' + error.message, 'error');
+            });
+        }
+
+        // Pause music
+        function pauseMusic() {
+            demoMusic.pause();
+            isPlaying = false;
+            status.textContent = '⏸️ Musik dijeda';
+            status.className = 'status info';
+            updateStatus('Musik dijeda', 'info');
+        }
+
+        // Stop music
+        function stopMusic() {
+            demoMusic.pause();
+            demoMusic.currentTime = 0;
+            isPlaying = false;
+            status.textContent = '⏹️ Musik dihentikan';
+            status.className = 'status info';
+            updateStatus('Musik dihentikan', 'info');
+        }
+
+        // Update status message
+        function updateStatus(message, type) {
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+            statusDiv.style.margin = '10px 0';
+            statusDiv.style.animation = 'fadeIn 0.5s ease';
+            
+            document.querySelector('.container').appendChild(statusDiv);
+            
+            setTimeout(() => {
+                if (document.querySelector('.container').contains(statusDiv)) {
+                    document.querySelector('.container').removeChild(statusDiv);
+                }
+            }, 3000);
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            if (demoMusic.duration) {
+                const progress = (demoMusic.currentTime / demoMusic.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                // Update time display
+                currentTime.textContent = formatTime(demoMusic.currentTime);
+                duration.textContent = formatTime(demoMusic.duration);
+            }
+        }
+
+        // Format time
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
+
+        // Event listeners
+        demoMusic.addEventListener('timeupdate', updateProgress);
+        demoMusic.addEventListener('loadedmetadata', () => {
+            updateStatus('Musik siap diputar', 'success');
+        });
+        demoMusic.addEventListener('ended', () => {
+            updateStatus('Musik selesai, loop otomatis', 'info');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkFileStatus();
+            updateStatus('Demo musik lokal siap digunakan!', 'info');
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Music Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .music-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            background: #e91e63;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+        .note {
+            font-size: 3rem;
+            margin: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Wedding Music Player 🎵</h1>
+        <p>Klik tombol di bawah untuk memutar musik pernikahan</p>
+        
+        <div class="music-controls">
+            <button onclick="playMusic()">▶️ Play</button>
+            <button onclick="pauseMusic()">⏸️ Pause</button>
+            <button onclick="stopMusic()">⏹️ Stop</button>
+        </div>
+        
+        <div class="note">♪</div>
+        
+        <p>Musik akan otomatis terintegrasi dengan undangan pernikahan</p>
+        
+        <audio id="weddingMusic" loop>
+            <!-- Musik akan dimuat dari URL eksternal -->
+            <source src="C:\Users\aldop\OneDrive\Dokumen\undangan pernikahan\wave to earth - love. (Official Lyric Video) [Q49pnA4jsp8].mp3" type="audio/wav">
+        </audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById('weddingMusic');
+        
+        function playMusic() {
+            audio.play().catch(e => {
+                console.log('Autoplay prevented:', e);
+                alert('Klik tombol Play untuk memutar musik');
+            });
+        }
+        
+        function pauseMusic() {
+            audio.pause();
+        }
+        
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+        
+        // Auto-play saat halaman dimuat
+        window.addEventListener('load', () => {
+            setTimeout(playMusic, 1000);
+        });
+    </script>
+</body>
+</html>
+
